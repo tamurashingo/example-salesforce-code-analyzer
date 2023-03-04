@@ -1,0 +1,21 @@
+name: ci
+
+on:
+  pull_request:
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Install Salesforce CLI"
+        run: |
+          npm install sfdx-cli
+          node_modules/sfdx-cli/bin/run plugins:install @salesforce/sfdx-scanner
+      - name: "Run SFDX Scanner"
+        uses: mitchspano/sfdx-scan-pull-request@v0.1.7
+        with:
+          pmdconfig: ruleset.xml
+          serverity-threashold: 4
+          strictly-enforced-rules: '[{ "engine": "pmd", "category": "Performance", "rule": "AvoidDebugStatements" }]'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
