@@ -19,6 +19,7 @@ jobs:
         uses: mitchspano/sfdx-scan-pull-request@v0.1.7
         with:
           pmdconfig: ruleset.xml
+          eslintconfig: force-app/main/default/lwc/.eslintrc.json
           serverity-threashold: 4
           strictly-enforced-rules: '[{ "engine": "pmd", "category": "Performance", "rule": "AvoidDebugStatements" }]'
         env:
