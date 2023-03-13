@@ -26,4 +26,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: "Run Graph Engine against all files"
         run: |
-          node_modules/sfdx-cli/bin/run scanner:run:dfa --target './force-app/main/default/classes' --projectdir './force-app/main/default' --severity-threshold 1
+          node_modules/sfdx-cli/bin/run scanner:run:dfa --target './force-app/main/default/**/*' --projectdir './force-app/main/default' --severity-threshold 1
